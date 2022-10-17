@@ -1,7 +1,15 @@
 import React from "react";
+import loader from "../assets/svg/loader.svg";
 
 const Loader = ({ title }: { title: string }) => {
-  return <div>Loader</div>;
+  return (
+    <div className="w-full flex justify-center items-center flex-col">
+      <img src={loader} alt="Loader" className="w-32 h-32 object-contain" />
+      <h1 className="font-bold text-white mt-2 text-2xl">
+        {title || "Loading..."}
+      </h1>
+    </div>
+  );
 };
 
 export default Loader;
