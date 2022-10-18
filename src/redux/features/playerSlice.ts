@@ -4,16 +4,27 @@ import { store } from "../store";
 const initialState = {
   currentSongs: [
     {
-      track: { title: "", images: { coverart: "" }, subtitle: "" },
+      track: {
+        title: "",
+        images: { coverart: "" },
+        subtitle: "",
+        hub: { actions: [{ uri: "" }] },
+      },
       title: "",
       images: { coverart: "" },
       subtitle: "",
+      hub: { actions: [{ uri: "" }] },
     },
   ],
   currentIndex: 0,
   isActive: false,
   isPlaying: false,
-  activeSong: { title: "", images: { coverart: "" }, subtitle: "" },
+  activeSong: {
+    title: "",
+    images: { coverart: "" },
+    subtitle: "",
+    hub: { actions: [{ uri: "" }] },
+  },
   genreListId: "",
 };
 
