@@ -2,11 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 import { store } from "../store";
 
 const initialState = {
-  currentSongs: [{ track: { title: "" }, title: "" }],
+  currentSongs: [
+    {
+      track: { title: "", images: { coverart: "" }, subtitle: "" },
+      title: "",
+      images: { coverart: "" },
+      subtitle: "",
+    },
+  ],
   currentIndex: 0,
   isActive: false,
   isPlaying: false,
-  activeSong: { title: "" },
+  activeSong: { title: "", images: { coverart: "" }, subtitle: "" },
   genreListId: "",
 };
 
