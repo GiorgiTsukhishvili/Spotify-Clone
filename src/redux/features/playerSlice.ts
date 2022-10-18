@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { store } from "../store";
 
 const initialState = {
-  currentSongs: [],
+  currentSongs: [{ track: { title: "" }, title: "" }],
   currentIndex: 0,
   isActive: false,
   isPlaying: false,
@@ -69,7 +69,7 @@ export const {
   selectGenreListId,
 } = playerSlice.actions;
 
-type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof store.getState>;
 
 export const playerReducer = (state: RootState) => state.player;
 
