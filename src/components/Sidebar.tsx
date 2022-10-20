@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { RiCloseLine } from "react-icons/ri";
 
 import Logo from "../assets/imgs/logo.png";
@@ -32,7 +32,9 @@ const Sidebar = () => {
   return (
     <Fragment>
       <div className="md:flex hidden flex-col w-[240px] py-10 px-4 bg-[#191624]">
-        <img src={Logo} alt="Logo" className="w-full h-20 object-contain" />
+        <Link to="/">
+          <img src={Logo} alt="Logo" className="w-full h-20 object-contain" />
+        </Link>
         <NavLinks />
       </div>
       <div className="absolute md:hidden block top-6 right-3">

@@ -17,9 +17,58 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import { SongInterface } from "../pages/interfaces/songInterface";
 
-const TopChartCart = ({ song, i }: { song: SongInterface; i: number }) => (
+const TopChartCart = ({
+  song,
+  i,
+  isPlaying,
+  activeSong,
+  handlePauseClick,
+  handlePlayClick,
+}: {
+  song: SongInterface;
+  i: number;
+  isPlaying: boolean;
+  activeSong: {
+    title: string;
+    images: {
+      coverart: string;
+    };
+    subtitle: string;
+    hub: {
+      actions: {
+        uri: string;
+      }[];
+    };
+  };
+  handlePauseClick: () => void;
+  handlePlayClick: (song: SongInterface, i: number) => void;
+}) => (
   <div className="w-full flex flex-row items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2">
-    {song.title}
+    <h3 className="font-bold text-base text-white mr-3">{i + 1}.</h3>
+    <div className="flex-1 flex flex-row justify-between items-center">
+      <Link to={`/songs/${song.key}`}>
+        <img
+          src={song.images.coverart}
+          alt="Cover Art"
+          className="w-20 h-20 rounded-lg"
+        />
+      </Link>
+      <div className="flex-1 flex flex-col justify-center mx-3">
+        <Link to={`/songs/${song.key}`}>
+          <p className="text-xl font-bold text-white">{song.title}</p>
+        </Link>
+        <Link to={`/artists/${song.artists[0].adamid}`}>
+          <p className="text-base text-gray-300 mt-1">{song.subtitle}</p>
+        </Link>
+      </div>
+    </div>
+    <PlayPause
+      isPlaying={isPlaying}
+      activeSong={activeSong}
+      song={song}
+      handlePause={handlePauseClick}
+      handlePlay={() => handlePlayClick(song, i)}
+    />
   </div>
 );
 
@@ -36,8 +85,8 @@ const TopPlay = () => {
     dispatch(playPause(false));
   };
 
-  const handlePlayClick = () => {
-    // dispatch(setActiveSong({ song, data, i }));
+  const handlePlayClick = (song: SongInterface, i: number) => {
+    dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
 
@@ -60,7 +109,15 @@ const TopPlay = () => {
         <div className="mt-4 flex flex-col gap-1">
           {topPlays &&
             topPlays.map((song: SongInterface, i: number) => (
-              <TopChartCart song={song} i={i} key={song.key} />
+              <TopChartCart
+                song={song}
+                i={i}
+                key={song.key}
+                isPlaying={isPlaying}
+                activeSong={activeSong}
+                handlePauseClick={handlePauseClick}
+                handlePlayClick={() => handlePlayClick(song, i)}
+              />
             ))}
         </div>
       </div>
