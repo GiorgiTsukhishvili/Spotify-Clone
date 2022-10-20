@@ -37,7 +37,7 @@ const TopPlay = () => {
   };
 
   const handlePlayClick = () => {
-    dispatch(setActiveSong({ song, data, i }));
+    // dispatch(setActiveSong({ song, data, i }));
     dispatch(playPause(true));
   };
 
@@ -58,13 +58,14 @@ const TopPlay = () => {
           </Link>
         </div>
         <div className="mt-4 flex flex-col gap-1">
-          {topPlays.map((song: SongInterface, i: number) => (
-            <TopChartCart song={song} i={i} key={song.key} />
-          ))}
+          {topPlays &&
+            topPlays.map((song: SongInterface, i: number) => (
+              <TopChartCart song={song} i={i} key={song.key} />
+            ))}
         </div>
       </div>
 
-      <div className=" flex flex-col mt-8">
+      <div className="flex flex-col mt-8">
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-white font-bold text-xl">Top Artists</h2>
           <Link to="/top-artists">
@@ -81,21 +82,22 @@ const TopPlay = () => {
           modules={[FreeMode]}
           className="mt-4"
         >
-          {topPlays.map((song: SongInterface, i: number) => (
-            <SwiperSlide
-              key={song.key}
-              style={{ width: "10%", height: "auto" }}
-              className="shadow-lg rounded-full animate-slideright"
-            >
-              <Link to={`/artists/${song.artists[0].adamid}`}>
-                <img
-                  src={song.images.background}
-                  alt="name"
-                  className="rounded-full  object-cover"
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
+          {topPlays &&
+            topPlays.map((song: SongInterface, i: number) => (
+              <SwiperSlide
+                key={song.key}
+                style={{ width: "80px", height: "auto" }}
+                className="shadow-lg rounded-full animate-slideright"
+              >
+                <Link to={`/artists/${song.artists[0].adamid}`}>
+                  <img
+                    src={song.images.background}
+                    alt="name"
+                    className="rounded-full  object-cover"
+                  />
+                </Link>
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     </div>
