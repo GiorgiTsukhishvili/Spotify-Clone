@@ -65,6 +65,7 @@ const SongDetails = () => {
         activeSong={activeSong}
         handlePauseClick={handlePauseClick}
         handlePlayClick={handlePlayClick}
+        artistId={songData.artistId}
       />
     </div>
   );
