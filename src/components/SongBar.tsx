@@ -21,8 +21,8 @@ interface SongBarProps {
       }[];
     };
   };
-  handlePauseClick: () => void;
-  handlePlayClick: (song: SongInterface, i: number) => void;
+  handlePauseClick?: () => void;
+  handlePlayClick?: (song: SongInterface, i: number) => void;
 }
 
 const SongBar = ({
@@ -73,7 +73,7 @@ const SongBar = ({
         activeSong={activeSong}
         song={song}
         handlePause={handlePauseClick}
-        handlePlay={() => handlePlayClick(song, i)}
+        handlePlay={handlePlayClick ? () => handlePlayClick(song, i) : () => {}}
       />
     ) : null}
   </div>

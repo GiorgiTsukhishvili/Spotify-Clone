@@ -17,8 +17,8 @@ interface RelatedSongsProps {
       }[];
     };
   };
-  handlePauseClick: () => void;
-  handlePlayClick: (song: SongInterface, i: number) => void;
+  handlePauseClick?: () => void;
+  handlePlayClick?: (song: SongInterface, i: number) => void;
   artistId: string;
 }
 

@@ -8,19 +8,23 @@ const DetailsHeader = ({
   artistData,
 }: {
   artistId: string;
-  songData: TrackInterface;
+  songData?: TrackInterface;
   artistData?: any;
 }) => {
+  console.log(
+    artistData?.artists[artistId].attributes?.artwork?.url
+      .replace("{w}", "500")
+      .replace("{h}", "500")
+  );
+
   return (
     <div className="relative w-full flex flex-col">
       <div className="w-full bg-gradient-to-l from-transparent to-black sm:h-48 h-28"></div>
       <div className="absolute inset-0 flex items-center">
         <img
           src={
-            artistId.length > 0 && songData && artistData
+            artistId.length > 0
               ? artistData?.artists[artistId].attributes?.artwork?.url
-                  .replace("{w}", "500")
-                  .replace("{h}", "500")
               : songData && songData.images.coverart
           }
           alt="Art"
@@ -41,7 +45,7 @@ const DetailsHeader = ({
           )}
           <p className="text-base text-gray-400 mt-2">
             {artistId.length > 0
-              ? artistData?.genreNames[0]
+              ? artistData?.artists[artistId].attributes.genreNames[0]
               : songData?.genres?.primary}
           </p>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { DetailsHeader, Error, Loader, RelatedSongs } from "../components";
+import { DetailsHeader, Loader, RelatedSongs, Error } from "../components";
 
 import {
   setActiveSong,
@@ -20,11 +20,17 @@ const SongDetails = () => {
 
   const { songid } = useParams();
 
-  const { data: songData, isFetching: isFetchingSongDetails } =
-    useGetSongDetailsQuery(songid!);
+  const {
+    data: songData,
+    isFetching: isFetchingSongDetails,
+    error,
+  } = useGetSongDetailsQuery(songid!);
 
-  const { data: relatedSongs, isFetching: isFetchingRelatedSongs } =
-    useGetSongRelatedQuery(songid!);
+  const {
+    data: relatedSongs,
+    isFetching: isFetchingRelatedSongs,
+    error: relatedError,
+  } = useGetSongRelatedQuery(songid!);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
@@ -38,6 +44,8 @@ const SongDetails = () => {
   if (isFetchingRelatedSongs || isFetchingSongDetails) {
     return <Loader title="Searching song details" />;
   }
+
+  if (error || relatedError) return <Error />;
 
   return (
     <div className="flex flex-col">

@@ -6,8 +6,8 @@ interface PlayPauseProps {
   isPlaying: boolean;
   activeSong: { title: string };
   song: SongInterface;
-  handlePause: () => void;
-  handlePlay: () => void;
+  handlePause?: () => void;
+  handlePlay?: () => void;
 }
 
 const PlayPause = ({
