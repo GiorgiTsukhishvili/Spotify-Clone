@@ -16,7 +16,7 @@ const App = () => {
   const { activeSong } = useSelector(playerReducer);
 
   return (
-    <div className="relative flex">
+    <div className="relative flex h-[100vh]">
       <Sidebar />
       <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
         <Searchbar />
