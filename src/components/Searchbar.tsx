@@ -1,11 +1,20 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 
 const Searchbar = () => {
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    navigate(`/search/${searchTerm}`);
+  };
+
   return (
     <form
-      action=""
+      onSubmit={(e) => handleSubmit(e)}
       autoComplete="off"
       className="p-2 text-gray-400 focus-within:text-gray-600"
     >
@@ -19,8 +28,8 @@ const Searchbar = () => {
           name="search-filed"
           id="search-field"
           placeholder="Search"
-          value={""}
-          onChange={() => {}}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
           className="ml-2 flex-1 bg-transparent border-none outline-none placeholder-gray-500 text-base text-white"
         />
       </div>
