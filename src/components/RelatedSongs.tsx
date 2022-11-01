@@ -37,7 +37,7 @@ const RelatedSongs = ({
       <div className="mt-6 w-full flex flex-col">
         {data?.map((song: SongInterface, i: number) => (
           <SongBar
-            key={`${song.key}-${artistId}`}
+            key={`${song.key}-${artistId}` + Math.random()}
             song={song}
             i={i}
             artistId={artistId}

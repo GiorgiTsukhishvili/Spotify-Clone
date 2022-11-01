@@ -11,12 +11,6 @@ const DetailsHeader = ({
   songData?: TrackInterface;
   artistData?: any;
 }) => {
-  console.log(
-    artistData?.artists[artistId].attributes?.artwork?.url
-      .replace("{w}", "500")
-      .replace("{h}", "500")
-  );
-
   return (
     <div className="relative w-full flex flex-col">
       <div className="w-full bg-gradient-to-l from-transparent to-black sm:h-48 h-28"></div>
@@ -32,8 +26,8 @@ const DetailsHeader = ({
         />
         <div className="ml-5">
           <p className="font-bold sm:text-3xl text-xl text-white">
-            {artistId.length > 0 && songData && artistData
-              ? artistData.artists[artistId].attributes.name
+            {artistId.length > 0
+              ? artistData?.artists[artistId].attributes.name
               : songData?.title}
           </p>
           {artistId === "" && (
